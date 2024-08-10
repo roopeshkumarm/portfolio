@@ -552,7 +552,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-left: 0;
   margin-top: 10%;
   filter: drop-shadow(0 0 5px #da75f0) 
-          drop-shadow(0 0 10px #fff) 
+          drop-shadow(0 0 10px #ac4747) 
           drop-shadow(0 0 20px #000) 
           drop-shadow(0 0 40px #000); /* Neon light effect */
 }
