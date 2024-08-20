@@ -4,6 +4,7 @@ import headerImg from "../assets/img/header-img.svg";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import hearderimg2 from "../assets/img/banner-bg1.png";
 
 
 export const Banner = () => {
@@ -13,7 +14,7 @@ export const Banner = () => {
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
   const toRotate = [ "Web Developer", "UI/UX Designer" ];
-  const period = 2000;
+  const period = 500;
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -52,6 +53,14 @@ export const Banner = () => {
     <section className="banner" id="home">
       <Container>
         <Row className="aligh-items-center">
+        <Col xs={12} md={6} xl={5}>
+            <TrackVisibility>
+              {({ isVisible }) =>
+                <div >
+                  <img src={headerImg} alt="Header Img"/>
+                </div>}
+            </TrackVisibility>
+          </Col>
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
               {({ isVisible }) =>
@@ -63,14 +72,7 @@ export const Banner = () => {
               </div>}
             </TrackVisibility>
           </Col>
-          <Col xs={12} md={6} xl={5}>
-            <TrackVisibility>
-              {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={headerImg} alt="Header Img"/>
-                </div>}
-            </TrackVisibility>
-          </Col>
+          
         </Row>
       </Container>
     </section>
