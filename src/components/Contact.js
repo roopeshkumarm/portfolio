@@ -24,6 +24,36 @@ export const Contact = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setButtonText("Sending...");
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxNThhCw6ZJ0WvphRjIz263Hx5-JrnhfmjDLUUF2J-FJ-n7yh_wkZA6ZBKWIpi13aYlgA/exec",
+        {
+          method: "POST",
+          body: new URLSearchParams(formDetails),
+        }
+      );
+
+      const result = await response.json();
+      if (result.result === "success") {
+        setStatus({ success: true, message: "Message sent successfully!" });
+        setFormDetails(formInitialDetails);
+      } else {
+        setStatus({ success: false, message: "Failed to send message." });
+      }
+    } catch (error) {
+      setStatus({ success: false, message: "An error occurred. Please try again later." });
+    }
+
+    setButtonText("Send");
+    
+    // Redirect to the #connect section
+    window.location.href = "#connect";
+  };
+
   return (
     <section className="contact" id="connect">
       <Container>
@@ -32,9 +62,7 @@ export const Contact = () => {
             <TrackVisibility>
               {({ isVisible }) => (
                 <img
-                  className={
-                    isVisible ? "animate_animated animate_zoomIn" : ""
-                  }
+                  className={isVisible ? "animate_animated animate_zoomIn" : ""}
                   src={contactImg}
                   alt="Contact Us"
                 />
@@ -44,16 +72,9 @@ export const Contact = () => {
           <Col size={12} md={6}>
             <TrackVisibility>
               {({ isVisible }) => (
-                <div
-                  className={
-                    isVisible ? "animate_animated animate_fadeIn" : ""
-                  }
-                >
+                <div className={isVisible ? "animate_animated animate_fadeIn" : ""}>
                   <h2>Get In Touch</h2>
-                  <form
-                    method="post"
-                    action="https://script.google.com/macros/s/AKfycbxNThhCw6ZJ0WvphRjIz263Hx5-JrnhfmjDLUUF2J-FJ-n7yh_wkZA6ZBKWIpi13aYlgA/exec"
-                  >
+                  <form onSubmit={handleSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
                         <input
@@ -119,6 +140,9 @@ export const Contact = () => {
                             className={
                               status.success === false ? "danger" : "success"
                             }
+                            style={{
+                              color: status.success === true ? "white" : "inherit",
+                            }}
                           >
                             {status.message}
                           </p>
