@@ -25,7 +25,9 @@ export const Footer = () => {
         
         <Row>
           <Col className="text-center">
-            <p>&copy; 2024. All Rights Reserved</p>
+            <a href="https://chatgpt.com/share/66fd2589-4728-8005-87c5-48b098ba386e">&copy; 2024. All Rights Reserved</a>
+            {/* <p>&copy; 2024. All Rights Reserved</p> */}
+          
           </Col>
         </Row>
       </Container>
